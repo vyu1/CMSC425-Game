@@ -1,16 +1,20 @@
 fileFormatVersion: 2
-guid: bbe0646a3e905472aa94f3a94279881f
-timeCreated: 1491705392
+guid: cbebc77877d054dd291cc9594144f7cf
+timeCreated: 1491822743
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: right walking animation 4_0
-    21300002: right walking animation 4_1
-    21300004: right walking animation 4_2
-    21300006: right walking animation 4_3
-    21300008: right walking animation 4_4
-    21300010: right walking animation 4_5
-    21300012: right walking animation 4_6
+    21300000: right walking animation 5_0
+    21300002: right walking animation 5_1
+    21300004: right walking animation 5_2
+    21300006: right walking animation 5_3
+    21300008: right walking animation 5_4
+    21300010: right walking animation 5_5
+    21300012: right walking animation 5_6
+    21300014: right walking animation 5_7
+    21300016: right walking animation 5_8
+    21300018: right walking animation 5_9
+    21300020: right walking animation 5_10
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -77,90 +81,142 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: right walking animation 4_0
+      name: right walking animation 5_0
       rect:
         serializedVersion: 2
-        x: 154
-        y: 223
-        width: 29
-        height: 57
+        x: 4
+        y: 319
+        width: 38
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right walking animation 4_1
+      name: right walking animation 5_1
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 319
+        width: 30
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: right walking animation 5_2
       rect:
         serializedVersion: 2
         x: 246
-        y: 223
-        width: 31
-        height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 2, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: right walking animation 4_2
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 127
-        width: 35
-        height: 57
+        y: 318
+        width: 33
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right walking animation 4_3
+      name: right walking animation 5_3
       rect:
         serializedVersion: 2
         x: 57
-        y: 31
+        y: 222
         width: 36
-        height: 57
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right walking animation 4_4
+      name: right walking animation 5_4
       rect:
         serializedVersion: 2
-        x: 154
-        y: 31
-        width: 35
-        height: 57
+        x: 150
+        y: 222
+        width: 40
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right walking animation 4_5
+      name: right walking animation 5_5
       rect:
         serializedVersion: 2
-        x: 154
-        y: 127
-        width: 30
-        height: 57
+        x: 249
+        y: 222
+        width: 36
+        height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right walking animation 4_6
+      name: right walking animation 5_6
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 126
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: right walking animation 5_7
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 126
+        width: 51
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: right walking animation 5_8
       rect:
         serializedVersion: 2
         x: 213
-        y: 127
-        width: 49
+        y: 126
+        width: 60
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: right walking animation 5_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 30
+        width: 68
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: right walking animation 5_10
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 31
+        width: 71
         height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
