@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 1268580172}
   - component: {fileID: 1268580171}
   - component: {fileID: 1268580173}
+  - component: {fileID: 1268580174}
   m_Layer: 0
   m_Name: Harry Potter
   m_TagString: Untagged
@@ -372,6 +373,23 @@ MonoBehaviour:
   rb: {fileID: 0}
   walkingSpeed: 1
   jumpSpeed: 10
+--- !u!95 &1268580174
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1268580168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c86c717ae0fc499ba46f1fe76e9781c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1467462309
 GameObject:
   m_ObjectHideFlags: 0
