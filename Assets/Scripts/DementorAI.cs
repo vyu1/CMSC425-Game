@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DementorAI : MonoBehaviour {
 
-	public float distanceForCollisionX;
-	public float distanceForCollisionY;
 	private GameObject player;
 	private float playerDistanceX;
 	private float playerDistanceY;
@@ -20,18 +18,15 @@ public class DementorAI : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		player = GameObject.FindGameObjectWithTag ("HarryPotter");
-		playerDistanceX = player.transform.position.x - this.transform.position.x;
-		playerDistanceY = player.transform.position.y - this.transform.position.y;
-		if (Mathf.Abs(playerDistanceX) < distanceForCollisionX && Mathf.Abs(playerDistanceY) < distanceForCollisionY) {
-			attackPlayer ();
-		} else {
-			chasePlayer (); 
-		}
+	void LateUpdate () {
+		chasePlayer();
 	}
 
 	void chasePlayer () {
+		player = GameObject.FindGameObjectWithTag ("HarryPotter");
+		playerDistanceX = player.transform.position.x - this.transform.position.x;
+		playerDistanceY = player.transform.position.y - this.transform.position.y - 0.3f;
+
 		var horizontalMove = new Vector3 (playerDistanceX, 0, 0);
 		this.transform.position += horizontalMove * moveSpeed * Time.deltaTime;
 
@@ -39,9 +34,18 @@ public class DementorAI : MonoBehaviour {
 		this.transform.position += verticalMove * moveSpeed * Time.deltaTime;
 	}
 
+	void OnTriggerStay2D (Collider2D other) {
+		attackPlayer ();
+	}
+
 	void attackPlayer () {
-		var jerkMovement = new Vector3 (1f, 1f, 0);
-		player.transform.position += jerkMovement * hitPower * Time.deltaTime;
+		Vector3 jerkHitMovement;
+		if (playerDistanceX > 0) {
+			jerkHitMovement = new Vector3 (1f, 1f, 0); // dementor attacking from the left
+		} else {
+			jerkHitMovement = new Vector3 (-1f, 1f, 0); // dementor attacking from the right
+		}
+		player.transform.position += jerkHitMovement * hitPower * Time.deltaTime;
 	}
 
 	void changeBobMovement() {
