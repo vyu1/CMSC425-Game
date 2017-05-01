@@ -59,17 +59,20 @@
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\LayBombs.cs" />
+     <Compile Include="Assets\Scripts\LeftPatronus.cs" />
      <Compile Include="Assets\Scripts\MoveHarryPotter.cs" />
-     <Compile Include="Assets\Scripts\Patronus.cs" />
      <Compile Include="Assets\Scripts\Pauser.cs" />
      <Compile Include="Assets\Scripts\PickupSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Remover.cs" />
+     <Compile Include="Assets\Scripts\RightPatronus.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\ScoreShadow.cs" />
      <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
+     <Compile Include="Assets\Scripts\SnitchMovement.cs" />
+     <Compile Include="Assets\Scripts\SnitchPlacement.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
