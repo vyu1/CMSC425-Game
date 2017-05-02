@@ -45,20 +45,24 @@ public class MoveHarryPotter : MonoBehaviour {
 			if (Input.GetKey (KeyCode.Space)) {
 				verticalInput = 1f;
 			}
-			if (verticalInput == 1) {
-				horizontalInput *= 4;
-			}
 
-			RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 2f), Vector2.down);
+			var horizontalMove = new Vector2 (horizontalInput, 0);
+			transform.Translate (horizontalMove * walkingSpeed * Time.deltaTime);
+			var verticalMove = new Vector2 (0, verticalInput);
+			transform.Translate (verticalMove * jumpSpeed * Time.deltaTime);
+			animator.SetFloat ("xInput", horizontalInput);
+			animator.SetFloat ("yInput", verticalInput);
+
+			RaycastHit2D hit = Physics2D.Raycast (new Vector2 (transform.position.x, transform.position.y - 2f), Vector2.down);
 			// must be near or on ground
 			if (hit.collider != null && hit.collider.gameObject.tag == "platform"
-				&& this.transform.position.y <= hit.collider.gameObject.transform.position.y + 6f) {
+			    && this.transform.position.y <= hit.collider.gameObject.transform.position.y + 6f) {
 				if (verticalInput <= 0) {
+					transform.Translate (Physics2D.gravity * 0.1f * Time.deltaTime);
 					if (animator.GetBool ("flyingState")) {
 						animator.SetBool ("fallingState", true);
 						animator.SetBool ("flyingState", false);
 					}
-					GetComponent<Rigidbody2D> ().gravityScale = 1;
 
 					if (horizontalInput == 0) {
 						if (!animator.GetBool ("idleState")) {
@@ -80,21 +84,25 @@ public class MoveHarryPotter : MonoBehaviour {
 						animator.SetBool ("flyingState", true);
 						animator.SetBool ("fallingState", false);
 					}
-					GetComponent<Rigidbody2D> ().gravityScale = 0;
 				}
 			} 
-			// must be above ground or flying
+			// must be above ground 
 			else if (hit.collider != null && hit.collider.gameObject.tag == "platform") {
-
+				
+			} 
+			// nothing is underneath the player (player just falling)
+			else if (hit.collider == null) {
+				if (!animator.GetBool ("flyingState")) {
+					if (!animator.GetBool ("idleState")) {
+						animator.SetBool ("idleState", true);
+						animator.SetBool ("walkingState", false);
+					}
+					animator.SetBool ("flyingState", true);
+					animator.SetBool ("fallingState", false);
+				}
 			}
-
-			var horizontalMove = new Vector3(horizontalInput, 0, 0);
-			transform.position += horizontalMove * walkingSpeed * Time.deltaTime;
-			// TODO move upwards??
-			var verticalMove = new Vector3(0, verticalInput, 0);
-			transform.position += verticalMove * jumpSpeed * Time.deltaTime;
-			animator.SetFloat("xInput", horizontalInput);
-			animator.SetFloat("yInput", verticalInput);
+		} else {
+			transform.Translate (Physics2D.gravity * 0.5f * Time.deltaTime);
 		}
 	}
 
@@ -119,13 +127,23 @@ public class MoveHarryPotter : MonoBehaviour {
 				animator.SetBool ("fallingState", true);
 				animator.SetBool ("flyingState", false);
 			}
-			GetComponent<Rigidbody2D> ().gravityScale = 1;
+
+			// when dementor hits Harry and he falls off his broom, 
+			// if a rock isn't underneath him, then allow him to fly again after X seconds
+			RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 2f), Vector2.down);
+			if (hit.collider == null) {
+				Invoke ("CanFlyAgain", 2f);
+			}
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "platform") {
 			fellToGroundYet = true;
-		}
+		} 
+	}
+
+	void CanFlyAgain() {
+		fellToGroundYet = true;
 	}
 }
