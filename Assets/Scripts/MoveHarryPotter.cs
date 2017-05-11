@@ -16,13 +16,14 @@ public class MoveHarryPotter : MonoBehaviour {
 
 	private int lastDirection = 0; // 0 for left, 1 for right
 	private bool fellToGroundYet = true;
+	private int lastSeenSnitchPlacement;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator> ();
 //		InvokeRepeating ("SpawnDementor", 2.0f, 5.0f);
-		Invoke ("SpawnDementor", 0.0f);
+//		Invoke ("SpawnDementor", 0.0f);
 	}
 	
 	// Update is called once per frame
@@ -132,8 +133,11 @@ public class MoveHarryPotter : MonoBehaviour {
 			// if a rock isn't underneath him, then allow him to fly again after X seconds
 			RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 2f), Vector2.down);
 			if (hit.collider == null) {
-				Invoke ("CanFlyAgain", 2f);
+				Invoke ("CanFlyAgain", 1f);
 			}
+		}
+		if (other.gameObject.tag == "SnitchPlacements") {
+			lastSeenSnitchPlacement = System.Convert.ToInt32(other.gameObject.name.Substring (15));
 		}
 	}
 
@@ -145,5 +149,9 @@ public class MoveHarryPotter : MonoBehaviour {
 
 	void CanFlyAgain() {
 		fellToGroundYet = true;
+	}
+
+	public int lastSeen() {
+		return lastSeenSnitchPlacement;
 	}
 }
