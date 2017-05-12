@@ -33,25 +33,29 @@ public class SnitchMovement : MonoBehaviour {
 		int possibleNewPositionNumber;
 		GameObject possibleNewPosition;
 		bool flag = false;
+		int count = 0;
 		do {
+			count++;
 			possibleNewPositionNumber = Random.Range (0, maxSnitchPlacements);
 			possibleNewPosition = snitchPlacementsGroup.transform.GetChild (possibleNewPositionNumber).gameObject;
-//			print(possibleNewPosition.transform.position.x);
 			if (possibleNewPosition.transform.position.x < player.transform.position.x 
 				&& player.transform.position.x < this.transform.position.x) {
 				flag = true;
 			} else if (possibleNewPosition.transform.position.x > player.transform.position.x 
 				&& player.transform.position.x > this.transform.position.x) {
 				flag = true;
+			} else if (possibleNewPosition.transform.position.y < player.transform.position.y 
+				&& player.transform.position.y < this.transform.position.y) {
+				flag = true;
+			} else if (possibleNewPosition.transform.position.y > player.transform.position.y 
+				&& player.transform.position.y > this.transform.position.y) {
+				flag = true;
 			} else {
-//				print ("my snitch old position is " + this.transform.position.x);
-//				print ("new snitch position is this " + possibleNewPosition.transform.position.x);
-//				print ("but player is here " + player.transform.position.x);
 				flag = false;
 			}
-		} while (possibleNewPositionNumber == playerLastSeen || flag);
+		} while (flag && count <= maxSnitchPlacements);
+//		while (possibleNewPositionNumber == playerLastSeen || )
 		snitchPlacementPosition = possibleNewPositionNumber;
-//		print (snitchPlacementPosition);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

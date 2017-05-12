@@ -34,8 +34,10 @@ public class DementorAI : MonoBehaviour {
 		this.transform.position += verticalMove * moveSpeed * Time.deltaTime;
 	}
 
-	void OnTriggerStay2D (Collider2D other) {
-		attackPlayer ();
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.tag == "HarryPotter") {
+			attackPlayer ();
+		}
 	}
 
 	void attackPlayer () {

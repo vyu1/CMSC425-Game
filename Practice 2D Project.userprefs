@@ -2,10 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveHarryPotter.cs">
     <Files>
-      <File FileName="Assets/Scripts/MoveHarryPotter.cs" Line="25" Column="24" />
-      <File FileName="Assets/Scripts/DementorAI.cs" Line="37" Column="11" />
-      <File FileName="Assets/Scripts/LeftPatronus.cs" Line="25" Column="32" />
+      <File FileName="Assets/Scripts/MoveHarryPotter.cs" Line="31" Column="34" />
+      <File FileName="Assets/Scripts/DementorAI.cs" Line="17" Column="38" />
+      <File FileName="Assets/Scripts/LeftPatronus.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/RightPatronus.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraScript.cs" Line="28" Column="3" />
+      <File FileName="Assets/Scripts/SnitchMovement.cs" Line="20" Column="76" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

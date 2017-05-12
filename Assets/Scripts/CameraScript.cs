@@ -26,7 +26,9 @@ public class CameraScript : MonoBehaviour {
 	// LateUpdate is called after Update each frame
 	void LateUpdate () 
 	{
-		// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
-		transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, 0) + offset;
+		if (!player.GetComponent<MoveHarryPotter> ().playerIsBobbing ()) { 
+			// Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
+			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, 0) + offset;
+		}
 	}
 }
