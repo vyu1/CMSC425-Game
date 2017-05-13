@@ -1313,6 +1313,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: 708042f972a104a1793983dbefca755f, type: 2}
+      propertyPath: m_Color.r
+      value: 0.010141975
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: 708042f972a104a1793983dbefca755f, type: 2}
+      propertyPath: m_Color.g
+      value: 0.29411763
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: 708042f972a104a1793983dbefca755f, type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 708042f972a104a1793983dbefca755f, type: 2}
   m_IsPrefabParent: 0

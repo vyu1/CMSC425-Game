@@ -22,12 +22,18 @@ public class MoveHarryPotter : MonoBehaviour {
 	private float bobMovement = 1f;
 	private bool isBobbing = false;
 
+	private SpriteRenderer healthBar;
+	private Vector3 healthScale;
+	public float health = 100f;					// The player's health.
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator> ();
 		InvokeRepeating ("changeBobMovement", 0.0f, 0.5f);
 //		InvokeRepeating ("SpawnDementor", 2.0f, 5.0f);
+		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+		healthScale = healthBar.transform.localScale;
 		Invoke ("SpawnDementor", 0.0f);
 	}
 	
@@ -168,6 +174,12 @@ public class MoveHarryPotter : MonoBehaviour {
 				animator.SetBool ("fallingState", true);
 				animator.SetBool ("flyingState", false);
 			}
+
+			health -= 10;
+			// Set the health bar's colour to proportion of the way between green and red based on the player's health.
+			healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+			// Set the scale of the health bar to be proportional to the player's health.
+			healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
 
 			// when dementor hits Harry and he falls off his broom, 
 			// if a rock isn't underneath him, then allow him to fly again after X seconds

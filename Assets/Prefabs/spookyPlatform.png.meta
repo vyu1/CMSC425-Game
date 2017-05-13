@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e980ca8dc6c7c4029872837a534a267e
-timeCreated: 1494610091
+guid: d100fb0f619234b9b909623d38393e4a
+timeCreated: 1494610982
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slytherinPost_0
+    21300000: spookyPlatform_0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -71,13 +71,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slytherinPost_0
+      name: spookyPlatform_0
       rect:
         serializedVersion: 2
-        x: 210
-        y: 6
-        width: 320
-        height: 894
+        x: 1046
+        y: 465
+        width: 3580
+        height: 2645
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4623722361492562}
   - component: {fileID: 212140472145437462}
-  - component: {fileID: 114621015494978362}
   - component: {fileID: 61955826489603816}
   - component: {fileID: 50006087508458686}
+  - component: {fileID: 114526765254645360}
+  - component: {fileID: 114534672736237414}
   m_Layer: 0
   m_Name: dementor
   m_TagString: dementor
@@ -77,7 +78,21 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114621015494978362
+--- !u!114 &114526765254645360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704536390878196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa35550a7b5f4b5592c0cf8ff277235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.6
+  hitPower: 45
+  bobMovement: 2
+--- !u!114 &114534672736237414
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,12 +100,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1704536390878196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e8ff082aa5084e43a4c58c0e71fbe6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb229b4bd64c477381d541feae732a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.6
+  moveSpeed: 3
   hitPower: 45
-  bobMovement: 2
+  bobMovement: 1
 --- !u!212 &212140472145437462
 SpriteRenderer:
   m_ObjectHideFlags: 1

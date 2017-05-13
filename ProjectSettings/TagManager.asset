@@ -17,6 +17,7 @@ TagManager:
   - HarryPotter
   - SnitchPlacements
   - platform
+  - Goal
   layers:
   - Default
   - TransparentFX

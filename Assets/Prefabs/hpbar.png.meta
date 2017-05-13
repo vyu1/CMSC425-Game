@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e980ca8dc6c7c4029872837a534a267e
-timeCreated: 1494610091
+guid: 9703411c0d127444eac3145bf54cc7a2
+timeCreated: 1494709066
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: slytherinPost_0
+    21300000: hpbar_0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -71,16 +71,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slytherinPost_0
+      name: hpbar_0
       rect:
         serializedVersion: 2
-        x: 210
-        y: 6
-        width: 320
-        height: 894
+        x: 226
+        y: 253
+        width: 455
+        height: 212
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
