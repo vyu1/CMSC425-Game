@@ -18,6 +18,8 @@ TagManager:
   - SnitchPlacements
   - platform
   - Goal
+  - Snitch
+  - patronus
   layers:
   - Default
   - TransparentFX

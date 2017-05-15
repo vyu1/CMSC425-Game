@@ -38,7 +38,8 @@ public class ScoreDementor : MonoBehaviour {
 		var heading = targetGoalPosition - thisDementorPosition;
 		var direction = heading / heading.magnitude;
 
-		var horizontalMove = new Vector3 (direction.x, 0, 0);
+		int randomSpeedUp = Random.Range(0, 2);
+		var horizontalMove = new Vector3 (direction.x * randomSpeedUp, 0, 0);
 		this.transform.position += horizontalMove * moveSpeed * Time.deltaTime;
 
 		var verticalMove = new Vector3 (0, direction.y + bobMovement, 0);
@@ -73,8 +74,14 @@ public class ScoreDementor : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Goal") {
-			print ("Hit Goal!");
 		}
+	}
+
+	void OnTriggerStay2D(Collider2D other) {
+//		if (other.gameObject.tag == "Dementor") {
+//			int tryToMoveOverOrUnder = Random.Range (20, 50);
+//			this.transform.position += Vector3.up * tryToMoveOverOrUnder * moveSpeed * Time.deltaTime;
+//		}
 	}
 
 	void attackPlayer () {

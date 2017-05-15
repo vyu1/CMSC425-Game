@@ -62,8 +62,6 @@ public class SnitchMovement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag == "HarryPotter") {
-			playerScoreText.text = (int.Parse (playerScoreText.text) + 150).ToString();
-		}
+
 	}
 }

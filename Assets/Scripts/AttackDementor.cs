@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackDementor : MonoBehaviour {
 
@@ -11,9 +12,11 @@ public class AttackDementor : MonoBehaviour {
 	public float hitPower;
 	private bool bobUpOrDown = false; // false for bob up, true for bob down
 	public float bobMovement;
+	private Text playerPointsText;
 
 	// Use this for initialization
 	void Start () {
+		playerPointsText = GameObject.Find ("Potter Points").GetComponent<Text>();
 		InvokeRepeating ("changeBobMovement", 0.0f, 0.5f);
 	}
 	
@@ -60,6 +63,14 @@ public class AttackDementor : MonoBehaviour {
 		} else {
 			bobMovement *= -1;
 			bobUpOrDown = true;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.tag == "patronus") {
+			playerPointsText.text = (int.Parse (playerPointsText.text) + 10).ToString();
+			player.GetComponent<MoveHarryPotter> ().dementorKilled ();
+			Destroy (this.gameObject);
 		}
 	}
 }

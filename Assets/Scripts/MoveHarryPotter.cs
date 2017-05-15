@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveHarryPotter : MonoBehaviour {
 
@@ -27,20 +28,49 @@ public class MoveHarryPotter : MonoBehaviour {
 	private Vector3 healthScale;
 	public float health = 100f;					// The player's health.
 
+	private Text playerHealthText;
+	private Text playerScoreText;
+	private Text dementorScoreText;
+	private GameObject winText;
+	private GameObject loseText;
+
+	private int maxScoringDementorsAllowed = 3;
+	private int maxAttackDementorsAllowed = 2;
+	private int currentLivingDementors = 0;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator> ();
 		InvokeRepeating ("changeBobMovement", 0.0f, 0.5f);
-//		InvokeRepeating ("SpawnDementor", 2.0f, 5.0f);
+		playerHealthText = GameObject.Find ("HP Text").GetComponent<Text>();
 		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+		dementorScoreText = GameObject.Find ("Dementor Points").GetComponent<Text>();
+		playerScoreText = GameObject.Find ("Potter Points").GetComponent<Text>();
+		winText = GameObject.Find ("Win Text");
+		winText.SetActive (false);
+		loseText = GameObject.Find ("Lose Text");
+		loseText.SetActive (false);
 		healthScale = healthBar.transform.localScale;
-		Invoke ("SpawnAttackDementor", 0.0f);
-//		Invoke ("SpawnScoringDementor", 0.0f);
+		for (int i = 0; i < maxScoringDementorsAllowed; i++) {
+			Invoke ("SpawnScoringDementor", 0.0f);
+		}
+		for (int i = 0; i < maxAttackDementorsAllowed; i++) {
+			Invoke ("SpawnAttackDementor", 0.0f);
+		}
+//		InvokeRepeating ("SpawnAttackDementor", 2.0f, 5.0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (health < 100) {
+			health += 1 * Time.deltaTime;
+		}
+		playerHealthText.text = " HP [" + (int)health + "/100]";
+		healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+		// Set the scale of the health bar to be proportional to the player's health.
+		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
+
 		float horizontalInput = lastDirection;
 		if (!animator.GetBool ("fallingState") && !animator.GetBool("floatingState")) {
 			if (Input.GetKeyDown (KeyCode.E) && horizontalInput <= 0) {
@@ -49,6 +79,34 @@ public class MoveHarryPotter : MonoBehaviour {
 			} else if (Input.GetKeyDown (KeyCode.E) && horizontalInput > 0) {
 				animator.SetBool ("rightAttackState", true);
 				Invoke ("RightPatronusCharm", 1.0f);
+			}
+		}
+
+		// restarts the game
+		if (Input.GetKeyDown (KeyCode.R)) 
+		{
+			Application.LoadLevel(0);
+			health = 100f;
+			playerScoreText.text = ((int)0).ToString();
+			dementorScoreText.text = ((int)0).ToString();
+			Time.timeScale = 1;
+		}
+
+		// quits the game
+		if (Input.GetKey (KeyCode.Escape) || Input.GetKey (KeyCode.Q))
+		{
+			Application.Quit();
+		}
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			if (Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+			}
+			else
+			{
+				Time.timeScale = 1;
 			}
 		}
 	}
@@ -181,6 +239,7 @@ public class MoveHarryPotter : MonoBehaviour {
 	}
 
 	void SpawnAttackDementor() {
+		currentLivingDementors += 1;
 		Instantiate (attackDementor);
 	}
 
@@ -202,7 +261,18 @@ public class MoveHarryPotter : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "SnitchPlacements") {
-			lastSeenSnitchPlacement = System.Convert.ToInt32(other.gameObject.name.Substring (15));
+			lastSeenSnitchPlacement = System.Convert.ToInt32 (other.gameObject.name.Substring (15));
+		} else if (other.gameObject.tag == "Snitch") {
+			playerScoreText.text = (int.Parse (playerScoreText.text) + 150).ToString();
+			int dementorScore = (int.Parse (dementorScoreText.text));
+			int playerScore = (int.Parse (playerScoreText.text));
+			if (playerScore >= dementorScore) {
+				Time.timeScale = 0;
+				winText.SetActive (true);
+			} else {
+				Time.timeScale = 0;
+				loseText.SetActive (true);
+			}
 		}
 	}
 
@@ -222,10 +292,16 @@ public class MoveHarryPotter : MonoBehaviour {
 //			}
 
 			health -= 10;
+			playerHealthText.text = " HP [" + (int)health + "/100]";
 			// Set the health bar's colour to proportion of the way between green and red based on the player's health.
 			healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
 			// Set the scale of the health bar to be proportional to the player's health.
 			healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
+
+			if (health <= 0) {
+				Time.timeScale = 0;
+				loseText.SetActive (true);
+			}
 
 			// when dementor hits Harry and he falls off his broom, 
 			// if a rock isn't underneath him, then allow him to fly again after X seconds
@@ -264,6 +340,13 @@ public class MoveHarryPotter : MonoBehaviour {
 		} else {
 			bobMovement *= -1;
 			bobUpOrDown = true;
+		}
+	}
+
+	public void dementorKilled() {
+		currentLivingDementors -= 1;
+		if (currentLivingDementors < maxAttackDementorsAllowed) {
+			Invoke ("SpawnAttackDementor", 7.0f);
 		}
 	}
 }
