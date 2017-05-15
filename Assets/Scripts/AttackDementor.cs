@@ -24,13 +24,16 @@ public class AttackDementor : MonoBehaviour {
 
 	void chasePlayer () {
 		player = GameObject.FindGameObjectWithTag ("HarryPotter");
-		playerDistanceX = player.transform.position.x - this.transform.position.x;
-		playerDistanceY = player.transform.position.y - this.transform.position.y - 0.3f;
 
-		var horizontalMove = new Vector3 (playerDistanceX, 0, 0);
+		Vector2 targetPlayerPosition = new Vector2 (player.transform.position.x, player.transform.position.y - 0.3f);
+		Vector2 thisDementorPosition = new Vector2 (this.transform.position.x, this.transform.position.y);
+		var heading = targetPlayerPosition - thisDementorPosition;
+		var direction = heading / heading.magnitude;
+
+		var horizontalMove = new Vector3 (direction.x, 0, 0);
 		this.transform.position += horizontalMove * moveSpeed * Time.deltaTime;
 
-		var verticalMove = new Vector3 (0, playerDistanceY + bobMovement, 0);
+		var verticalMove = new Vector3 (0, direction.y + bobMovement, 0);
 		this.transform.position += verticalMove * moveSpeed * Time.deltaTime;
 	}
 

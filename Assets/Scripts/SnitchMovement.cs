@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnitchMovement : MonoBehaviour {
 
@@ -9,10 +10,12 @@ public class SnitchMovement : MonoBehaviour {
 	public Transform snitchPlacementsGroup;
 	public GameObject player;
 	private int playerLastSeen;
+	private Text playerScoreText;
 
 	// Use this for initialization
 	void Start () {
 		updateNewSnitchPlacement ();
+		playerScoreText = GameObject.Find ("Potter Points").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -60,7 +63,7 @@ public class SnitchMovement : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "HarryPotter") {
-			print ("COLLIDING WITH SNITCH1COLLIDING WITH SNITCH1COLLIDING WITH SNITCH1COLLIDING WITH SNITCH1COLLIDING WITH SNITCH1");
+			playerScoreText.text = (int.Parse (playerScoreText.text) + 150).ToString();
 		}
 	}
 }

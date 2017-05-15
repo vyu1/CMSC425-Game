@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RightPatronus : MonoBehaviour {
 
 	private float originalInstantiatedPosition;
+	private Text playerPointsText;
 
 	// Use this for initialization
 	void Start () {
 		originalInstantiatedPosition = this.transform.position.x;
+		playerPointsText = GameObject.Find ("Potter Points").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +25,8 @@ public class RightPatronus : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "dementor") {
-			print ("triggered");
+			playerPointsText.text = (int.Parse (playerPointsText.text) + 10).ToString();
+			Destroy (other.gameObject);
 			Destroy (this.gameObject);
 		}
 	}

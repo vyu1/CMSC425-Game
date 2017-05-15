@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreDementor : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class ScoreDementor : MonoBehaviour {
 	public float hitPower;
 	private bool bobUpOrDown = false; // false for bob up, true for bob down
 	public float bobMovement;
+	private Text dementorScoreText;
 
 	private int whichGoal = 0; // 0 for left, 1 for middle, 2 for right 
 	private GameObject currentTargetGoal;
@@ -22,6 +24,8 @@ public class ScoreDementor : MonoBehaviour {
 		leftGoal = GameObject.Find ("LeftGoal");
 		middleGoal = GameObject.Find ("MiddleGoal");
 		rightGoal = GameObject.Find ("RightGoal");
+		dementorScoreText = GameObject.Find ("Dementor Points").GetComponent<Text>();
+
 		whichGoal = Random.Range (0, 3);
 		updateTarget ();
 		InvokeRepeating ("changeBobMovement", 0.0f, 0.5f);
@@ -34,9 +38,6 @@ public class ScoreDementor : MonoBehaviour {
 		var heading = targetGoalPosition - thisDementorPosition;
 		var direction = heading / heading.magnitude;
 
-//		float distanceToGoalX = currentTargetGoal.transform.position.x - this.transform.position.x;
-//		float distanceToGoalY = currentTargetGoal.transform.position.y - this.transform.position.y;
-
 		var horizontalMove = new Vector3 (direction.x, 0, 0);
 		this.transform.position += horizontalMove * moveSpeed * Time.deltaTime;
 
@@ -44,6 +45,7 @@ public class ScoreDementor : MonoBehaviour {
 		this.transform.position += verticalMove * moveSpeed * Time.deltaTime;
 
 		if (transform.position.x == currentTargetGoal.transform.position.x) {
+			dementorScoreText.text = (int.Parse (dementorScoreText.text) + 10).ToString();
 			updateTarget ();
 		}
 	}
