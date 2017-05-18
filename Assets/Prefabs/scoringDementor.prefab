@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageText: {fileID: 4385014903740676, guid: 980e5f1683202406cb7ca06a947172d5, type: 2}
-  moveSpeed: 3
+  moveSpeed: 6
   hitPower: 45
   bobMovement: 1
 --- !u!212 &212567497373587220

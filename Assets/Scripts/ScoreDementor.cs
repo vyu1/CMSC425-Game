@@ -48,7 +48,6 @@ public class ScoreDementor : MonoBehaviour {
 		this.transform.position += verticalMove * moveSpeed * Time.deltaTime;
 
 		if (transform.position.x == currentTargetGoal.transform.position.x) {
-			dementorScoreText.text = (int.Parse (dementorScoreText.text) + 10).ToString();
 			updateTarget ();
 		}
 	}
@@ -76,6 +75,7 @@ public class ScoreDementor : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Goal") {
+			dementorScoreText.text = (int.Parse (dementorScoreText.text) + 10).ToString();
 			Vector3 damagePosition = this.transform.position + new Vector3 (0, 2, 0);
 			Instantiate (damageText, damagePosition, this.transform.rotation);
 		}
