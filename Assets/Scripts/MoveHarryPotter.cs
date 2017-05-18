@@ -38,6 +38,12 @@ public class MoveHarryPotter : MonoBehaviour {
 	private int maxAttackDementorsAllowed = 2;
 	private int currentLivingDementors = 0;
 
+	private float lastAttackTime = -2f;
+	private float repeatAttackPeriod = 3f;
+
+	private float lastHitTime = 0f;
+	private float repeatDamagePeriod = 0.5f;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -73,10 +79,12 @@ public class MoveHarryPotter : MonoBehaviour {
 
 		float horizontalInput = lastDirection;
 		if (!animator.GetBool ("fallingState") && !animator.GetBool("floatingState")) {
-			if (Input.GetKeyDown (KeyCode.E) && horizontalInput <= 0) {
+			if (Input.GetKeyDown (KeyCode.E) && horizontalInput <= 0 && (Time.time > lastAttackTime + repeatAttackPeriod)) {
+				lastAttackTime = Time.time;
 				animator.SetBool ("leftAttackState", true);
 				Invoke ("LeftPatronusCharm", 1.0f);
-			} else if (Input.GetKeyDown (KeyCode.E) && horizontalInput > 0) {
+			} else if (Input.GetKeyDown (KeyCode.E) && horizontalInput > 0 && (Time.time > lastAttackTime + repeatAttackPeriod)) {
+				lastAttackTime = Time.time;
 				animator.SetBool ("rightAttackState", true);
 				Invoke ("RightPatronusCharm", 1.0f);
 			}
@@ -291,16 +299,20 @@ public class MoveHarryPotter : MonoBehaviour {
 //				animator.SetBool ("flyingState", false);
 //			}
 
-			health -= 10;
-			playerHealthText.text = " HP [" + (int)health + "/100]";
-			// Set the health bar's colour to proportion of the way between green and red based on the player's health.
-			healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
-			// Set the scale of the health bar to be proportional to the player's health.
-			healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
+			if (Time.time > lastHitTime + repeatDamagePeriod) {
+				lastHitTime = Time.time;
+				health -= 10;
+				if (health <= 0) {
+					health = 0;
+					Time.timeScale = 0;
+					loseText.SetActive (true);
+				}
 
-			if (health <= 0) {
-				Time.timeScale = 0;
-				loseText.SetActive (true);
+				playerHealthText.text = " HP [" + (int)health + "/100]";
+				// Set the health bar's colour to proportion of the way between green and red based on the player's health.
+				healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+				// Set the scale of the health bar to be proportional to the player's health.
+				healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
 			}
 
 			// when dementor hits Harry and he falls off his broom, 

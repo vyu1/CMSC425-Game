@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreDementor : MonoBehaviour {
 
+	public Transform damageText;
+
 	private GameObject leftGoal;
 	private GameObject middleGoal;
 	private GameObject rightGoal;
@@ -74,6 +76,8 @@ public class ScoreDementor : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Goal") {
+			Vector3 damagePosition = this.transform.position + new Vector3 (0, 2, 0);
+			Instantiate (damageText, damagePosition, this.transform.rotation);
 		}
 	}
 

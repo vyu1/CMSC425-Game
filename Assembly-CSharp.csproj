@@ -52,6 +52,7 @@
      <Compile Include="Assets\FarlandSkies\Demo\Scripts\Skybox\SkyboxRotator.cs" />
      <Compile Include="Assets\Scripts\AttackDementor.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\DamageAnimation.cs" />
      <Compile Include="Assets\Scripts\LeftPatronus.cs" />
      <Compile Include="Assets\Scripts\MoveHarryPotter.cs" />
      <Compile Include="Assets\Scripts\RightPatronus.cs" />
