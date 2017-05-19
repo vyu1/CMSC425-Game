@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\ScoreDementor.cs" />
      <Compile Include="Assets\Scripts\SnitchMovement.cs" />
      <Compile Include="Assets\Scripts\SnitchPlacement.cs" />
+     <Compile Include="Assets\Scripts\StayInCorner.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

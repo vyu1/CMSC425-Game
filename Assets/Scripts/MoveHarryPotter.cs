@@ -24,7 +24,8 @@ public class MoveHarryPotter : MonoBehaviour {
 	private float bobMovement = 1f;
 	private bool isBobbing = false;
 
-	private SpriteRenderer healthBar;
+	private Image healthBar;
+	private RectTransform healthBarPosition;
 	private Vector3 healthScale;
 	public float health = 100f;					// The player's health.
 
@@ -50,20 +51,22 @@ public class MoveHarryPotter : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		InvokeRepeating ("changeBobMovement", 0.0f, 0.5f);
 		playerHealthText = GameObject.Find ("HP Text").GetComponent<Text>();
-		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+		healthBar = GameObject.Find("HealthBar").GetComponent<Image>();
+		healthBarPosition = GameObject.Find ("HealthBar").GetComponent<RectTransform> ();
 		dementorScoreText = GameObject.Find ("Dementor Points").GetComponent<Text>();
 		playerScoreText = GameObject.Find ("Potter Points").GetComponent<Text>();
 		winText = GameObject.Find ("Win Text");
 		winText.SetActive (false);
 		loseText = GameObject.Find ("Lose Text");
 		loseText.SetActive (false);
+		healthBar.material.color = Color.green;
 		healthScale = healthBar.transform.localScale;
 		for (int i = 0; i < maxScoringDementorsAllowed; i++) {
 			Invoke ("SpawnScoringDementor", 0.0f);
 		}
-		for (int i = 0; i < maxAttackDementorsAllowed; i++) {
-			Invoke ("SpawnAttackDementor", 0.0f);
-		}
+//		for (int i = 0; i < maxAttackDementorsAllowed; i++) {
+//			Invoke ("SpawnAttackDementor", 0.0f);
+//		}
 //		InvokeRepeating ("SpawnAttackDementor", 2.0f, 5.0f);
 	}
 	
@@ -71,11 +74,14 @@ public class MoveHarryPotter : MonoBehaviour {
 	void Update () {
 		if (health < 100) {
 			health += 1 * Time.deltaTime;
+			healthBarPosition.position = 
+				new Vector3 (healthBarPosition.position.x + healthBarPosition.position.x * 0.01f * Time.deltaTime, 
+				healthBarPosition.position.y, 0f);
 		}
 		playerHealthText.text = " HP [" + (int)health + "/100]";
-		healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
-		// Set the scale of the health bar to be proportional to the player's health.
-		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
+		healthBar.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+//		 Set the scale of the health bar to be proportional to the player's health.
+		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1f, 1);
 
 		float horizontalInput = lastDirection;
 		if (!animator.GetBool ("fallingState") && !animator.GetBool("floatingState")) {
@@ -97,6 +103,8 @@ public class MoveHarryPotter : MonoBehaviour {
 			health = 100f;
 			playerScoreText.text = ((int)0).ToString();
 			dementorScoreText.text = ((int)0).ToString();
+			healthBar.material.color = Color.green;
+
 			Time.timeScale = 1;
 		}
 
@@ -312,7 +320,10 @@ public class MoveHarryPotter : MonoBehaviour {
 				// Set the health bar's colour to proportion of the way between green and red based on the player's health.
 				healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
 				// Set the scale of the health bar to be proportional to the player's health.
-				healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 0.5f, 1);
+				healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1f, 1);
+				healthBarPosition.position = 
+					new Vector3 (healthBarPosition.position.x - healthBarPosition.position.x * 0.1f, 
+					healthBarPosition.position.y, 0f);
 			}
 
 			// when dementor hits Harry and he falls off his broom, 
