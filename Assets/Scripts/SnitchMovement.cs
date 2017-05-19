@@ -8,8 +8,7 @@ public class SnitchMovement : MonoBehaviour {
 	private int snitchPlacementPosition = 0;
 	private int maxSnitchPlacements = 12;
 	public Transform snitchPlacementsGroup;
-	public GameObject player;
-	private int playerLastSeen;
+	private GameObject player;
 	private Text playerScoreText;
 
 	// Use this for initialization
@@ -20,9 +19,6 @@ public class SnitchMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (playerLastSeen != player.GetComponent<MoveHarryPotter> ().lastSeen ()) {
-			updateNewSnitchPlacement ();
-		}
 		GameObject target = snitchPlacementsGroup.transform.GetChild (snitchPlacementPosition).gameObject;
 		transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), 
 				new Vector2(target.transform.position.x, target.transform.position.y), 15 * Time.deltaTime);
@@ -32,7 +28,7 @@ public class SnitchMovement : MonoBehaviour {
 	}
 
 	public void updateNewSnitchPlacement() {
-		playerLastSeen = player.GetComponent<MoveHarryPotter> ().lastSeen ();
+		player = GameObject.FindGameObjectWithTag ("HarryPotter");
 		int possibleNewPositionNumber;
 		GameObject possibleNewPosition;
 		bool flag = false;
@@ -41,16 +37,16 @@ public class SnitchMovement : MonoBehaviour {
 			count++;
 			possibleNewPositionNumber = Random.Range (0, maxSnitchPlacements);
 			possibleNewPosition = snitchPlacementsGroup.transform.GetChild (possibleNewPositionNumber).gameObject;
-			if (possibleNewPosition.transform.position.x < player.transform.position.x 
+			if (possibleNewPosition.transform.position.x <= player.transform.position.x 
 				&& player.transform.position.x < this.transform.position.x) {
 				flag = true;
-			} else if (possibleNewPosition.transform.position.x > player.transform.position.x 
+			} else if (possibleNewPosition.transform.position.x >= player.transform.position.x 
 				&& player.transform.position.x > this.transform.position.x) {
 				flag = true;
-			} else if (possibleNewPosition.transform.position.y < player.transform.position.y 
+			} else if (possibleNewPosition.transform.position.y <= player.transform.position.y 
 				&& player.transform.position.y < this.transform.position.y) {
 				flag = true;
-			} else if (possibleNewPosition.transform.position.y > player.transform.position.y 
+			} else if (possibleNewPosition.transform.position.y >= player.transform.position.y 
 				&& player.transform.position.y > this.transform.position.y) {
 				flag = true;
 			} else {

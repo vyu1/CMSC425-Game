@@ -64,9 +64,9 @@ public class MoveHarryPotter : MonoBehaviour {
 		for (int i = 0; i < maxScoringDementorsAllowed; i++) {
 			Invoke ("SpawnScoringDementor", 0.0f);
 		}
-//		for (int i = 0; i < maxAttackDementorsAllowed; i++) {
-//			Invoke ("SpawnAttackDementor", 0.0f);
-//		}
+		for (int i = 0; i < maxAttackDementorsAllowed; i++) {
+			Invoke ("SpawnAttackDementor", 0.0f);
+		}
 //		InvokeRepeating ("SpawnAttackDementor", 2.0f, 5.0f);
 	}
 	
