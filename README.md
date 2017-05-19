@@ -17,4 +17,4 @@ E. External Resources
 
 (Optional)
 F. Known issues
-- If the player is attacked from directly underneath by a dementor (which doesn't happen that often), the player may become unable to move.
+- If the player is attacked from directly underneath by a dementor, the player may become unable to move or the wrong character animation may occur (which is fixed by just moving again).
