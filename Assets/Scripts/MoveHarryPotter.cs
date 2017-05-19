@@ -369,7 +369,7 @@ public class MoveHarryPotter : MonoBehaviour {
 	public void dementorKilled() {
 		currentLivingDementors -= 1;
 		if (currentLivingDementors < maxAttackDementorsAllowed) {
-			Invoke ("SpawnAttackDementor", 7.0f);
+			Invoke ("SpawnAttackDementor", 0.0f);
 		}
 	}
 }
