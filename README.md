@@ -13,7 +13,8 @@ E. External Resources
 - The "cloudy background" is a Unity Asset called "Farland Skies - Cloudy Crown." Link here: https://www.assetstore.unity3d.com/en/#!/content/60004
 - I used the Snapchat ghost to represent the "dementors."
 - The "HP bar" in the bottom left corner was imported from a 2D tutorial project I looked at. I found the asset in the project files located at: https://www.assetstore.unity3d.com/en/#!/content/11228
-- All of the rest of the animations and design were done by me, mainly through the use of http://www.piskelapp.com
+- All of the rest of the animations and design were done by me, mainly through the use of http://www.piskelapp.com. 
+- I have never done any character or web design before this project so doing pixel art was really new and challenging for me. I didn't find any free Unity assets on the Asset store that were either relevant for my game or that were to my liking, so I did the best I could making all the character animations, the Snitch, and platforms. 
 
 (Optional)
 F. Known issues
